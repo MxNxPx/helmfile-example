@@ -1,0 +1,25 @@
+repositories:
+- name: paulczar
+  url: https://tech.paulcz.net/charts
+- name: bitnami
+  url: https://charts.bitnami.com/bitnami
+
+releases:
+- name: nginx-raw
+  chart: paulczar/raw
+  namespace: default
+  wait: true
+  atomic: true
+  version: "1.0.1"
+  values:
+    - {{ env "HELMFILE_ENV_DIR" }}/nginx-raw.yaml.gotmpl
+- name: nginx-test
+  namespace: default
+  wait: true
+  atomic: true
+  chart: bitnami/nginx
+  version: "9.7.4"
+
+environments:
+  default:
+  dev:

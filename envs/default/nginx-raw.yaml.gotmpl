@@ -1,0 +1,7 @@
+manifests:
+  - metadata:
+      name: helmfile-secret
+    apiVersion: v1
+    kind: Secret
+    data:
+      secret-env-name: "{{ requiredEnv "HELMFILE_ENV_NAME" | b64enc }}"
